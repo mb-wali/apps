@@ -19,7 +19,7 @@ pom.xml
 .dir-locals.el
 .*.eld
 .nrepl-port
-apps.properties
+# apps.properties
 .hgignore
 test2junit
 build.xml

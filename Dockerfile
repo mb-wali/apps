@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 RUN apk add --no-cache git
 
-CMD ["--help"]
+# CMD ["--help"]
 
 RUN mkdir -p /etc/iplant/de/crypto && \
     touch /etc/iplant/de/crypto/pubring.gpg && \
@@ -13,6 +13,9 @@ RUN mkdir -p /etc/iplant/de/crypto && \
     touch /etc/iplant/de/crypto/trustdb.gpg
 
 COPY conf/main/logback.xml /usr/src/app/
+
+# copy config file 
+COPY apps.properties /etc/iplant/de/apps.properties
 
 COPY project.clj /usr/src/app/
 RUN lein deps
@@ -36,3 +39,15 @@ LABEL org.cyverse.descriptive-version="$descriptive_version"
 LABEL org.label-schema.vcs-ref="$git_commit"
 LABEL org.label-schema.vcs-url="https://github.com/cyverse-de/apps"
 LABEL org.label-schema.version="$descriptive_version"
+
+
+# Build
+# docker build -t mbwali/apps:latest .
+
+# Run
+# docker run -it -p 31323:31323 mbwali/apps:latest
+# Config
+# /etc/iplant/de/apps.properties
+
+# visit
+# http://0.0.0.0:31323
